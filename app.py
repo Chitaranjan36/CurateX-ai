@@ -1147,17 +1147,24 @@ elif theme == "Midnight":
 # FILE UPLOAD
 # =========================================================
 
-uploaded_file = st.sidebar.file_uploader(...)
+uploaded_file = st.sidebar.file_uploader(
+    "Upload Dataset",
+    type=["csv", "xlsx"]
+)
 
 if uploaded_file is not None:
-    ...
-    df = ...
+
+    if uploaded_file.name.endswith(".csv"):
+        df = pd.read_csv(uploaded_file)
+    else:
+        df = pd.read_excel(uploaded_file)
+
+    status = "✅ Dataset Uploaded"
+
 else:
     df = pd.read_csv("sample_data.csv")
+    status = "⚠️ Using Sample Dataset"
 
-original_df = df.copy()
-
-st.sidebar.success(status)
 original_df = df.copy()
 
 st.sidebar.success(status)
