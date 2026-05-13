@@ -1168,10 +1168,8 @@ if uploaded_file:
 
 else:
 
-    uploaded_file = st.file_uploader("Upload CSV", type=["csv"])
+    df = pd.read_csv("Data/sample_data.csv")
 
-if uploaded_file is not None:
-    df = pd.read_csv(uploaded_file)
     status = "⚠ Using Sample Dataset"
 
 original_df = df.copy()
