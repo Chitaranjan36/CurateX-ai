@@ -1164,10 +1164,13 @@ if uploaded_file:
     if uploaded_file.name.endswith(".csv"):
         df = pd.read_csv(uploaded_file)
     else:
-        df = pd.read_excel(uploaded_file)
 
-    status = "✅ Dataset Uploaded"
+    df = pd.DataFrame({
+        "Age":[25,30,np.nan,40],
+        "Salary":[50000,60000,55000,np.nan]
+    })
 
+    status = "⚠ Using Demo Dataset"
     announce("Dataset uploaded successfully Sir")
 
 else:
