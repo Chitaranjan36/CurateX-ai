@@ -1168,10 +1168,13 @@ if uploaded_file:
    
 
 else:
+    df = pd.DataFrame({
+        "Age":[25,30,np.nan,40],
+        "Salary":[50000,60000,55000,np.nan]
+    })
 
-    df = pd.read_csv("Data/sample_data.csv")
-
-    status = "⚠ Using Sample Dataset"
+    status = "⚠ Using Demo Dataset"
+   
 
 original_df = df.copy()
 
