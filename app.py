@@ -1161,24 +1161,30 @@ if uploaded_file:
     with st.spinner("🧠 AI analyzing dataset patterns..."):
         time.sleep(2)
 
+  if uploaded_file:
+
+    with st.spinner("🧠 AI analyzing dataset patterns..."):
+        time.sleep(2)
+
     if uploaded_file.name.endswith(".csv"):
         df = pd.read_csv(uploaded_file)
-   else:
-    df = pd.read_excel(uploaded_file)
+    else:
+        df = pd.read_excel(uploaded_file)
 
-status = "✅ Dataset Uploaded"
-
-announce("Dataset uploaded successfully Sir")
-
-   
+    status = "✅ Dataset Uploaded"
 
 else:
+
     df = pd.DataFrame({
         "Age":[25,30,np.nan,40],
         "Salary":[50000,60000,55000,np.nan]
     })
 
-    status = "⚠ Using Demo Dataset"
+    status = "⚠️ Using Demo Dataset"
+
+original_df = df.copy()
+
+st.sidebar.success(status)
    
 
 original_df = df.copy()
