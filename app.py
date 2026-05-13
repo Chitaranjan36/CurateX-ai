@@ -590,6 +590,10 @@ def smart_fill(df):
 
             predictions = model.predict(X_test)
 
+        # Fix decimal values for integer columns like Age
+            if (df_copy[col].dropna() % 1 == 0).all():
+                predictions = np.round(predictions).astype(int)
+
             df_copy.loc[df_copy[col].isnull(), col] = predictions
 
     return df_copy
@@ -1148,11 +1152,14 @@ elif theme == "Midnight":
 # =========================================================
 
 uploaded_file = st.sidebar.file_uploader(
-    "Upload Dataset",
-    type=["csv", "xlsx"]
+    "📂 Upload Dataset",
+    type=["csv","xlsx"]
 )
 
-if uploaded_file is not None:
+if uploaded_file:
+
+    with st.spinner("🧠 AI analyzing dataset patterns..."):
+        time.sleep(2)
 
     if uploaded_file.name.endswith(".csv"):
         df = pd.read_csv(uploaded_file)
@@ -1161,9 +1168,13 @@ if uploaded_file is not None:
 
     status = "✅ Dataset Uploaded"
 
+    announce("Dataset uploaded successfully Sir")
+
 else:
-    df = pd.read_csv("sample_data.csv")
-    status = "⚠️ Using Sample Dataset"
+
+    df = pd.read_csv("Data/sample_data.csv")
+
+    status = "⚠ Using Sample Dataset"
 
 original_df = df.copy()
 
