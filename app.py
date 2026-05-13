@@ -1160,12 +1160,7 @@ if uploaded_file:
 
     with st.spinner("🧠 AI analyzing dataset patterns..."):
         time.sleep(2)
-
-  if uploaded_file:
-
-    with st.spinner("🧠 AI analyzing dataset patterns..."):
-        time.sleep(2)
-
+        
     if uploaded_file.name.endswith(".csv"):
         df = pd.read_csv(uploaded_file)
     else:
